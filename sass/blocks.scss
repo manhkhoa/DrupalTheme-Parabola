@@ -1,0 +1,242 @@
+/**
+/**
+ * @file
+ * Block Styling
+ */
+
+@import "base";
+
+dl, menu, ol, ul, .item-list ul {
+   margin: 0;
+}
+.block { /* Block wrapper */
+  .block-inner{
+	padding: 10px 20px;
+	
+	ul li{
+		list-style: disc;
+	}
+	ul.links li{
+		list-style: none;
+	}
+}
+  &.first { /* The first block in the region */
+  }
+
+  &.last { /* The last block in the region */
+  }
+
+  &.odd { /* Zebra striping for each block in the region */
+  }
+
+  &.even { /* Zebra striping for each block in the region */
+  }
+
+}
+
+
+/*
+ * Second sidebar (on right in LTR languages, on left in RTL)
+ *
+ * Remember to NOT add padding or margin to your .region-sidebar-second
+ * (see the layout.css file.)
+ */
+
+.sidebar {
+	
+	.block-inner{
+		background-color: #282828;
+		margin-bottom: 10px;
+		.block-title{
+			color: #999999;
+			margin-bottom: 15px;
+		}
+		
+		.item-list ul {
+		padding-left: 0;
+		li {
+		  border-bottom: 1px dashed #666;
+		  list-style: none;
+		  margin: 10px 10px 0 0;
+		  padding-bottom: 10px;
+		  span{
+			color: #3FA757;
+		  }
+		  
+		  &.last{
+			border: none;
+		  }
+		}
+	  }
+	  .form-text, #edit-pass, #edit-name{
+		width: 96%;
+		height: 20px;
+		background: #242424;
+		@include box-shadow(1px 1px 2px -1px #000000 inset, 0 1px 1px 0 rgba(52, 52, 52, 0.4));
+		@include border-radius(3px);
+		border: none;
+		color: #979797;
+		font-family: Arial, serif;
+	  }
+	  
+	  
+	}
+	
+	
+	.block-search { /* Wrapper for the search form */
+	  label {}
+	  input {
+		
+	  }
+	  .block-inner{
+	  margin: 0;
+	  padding: 0;
+	  #search-block-form{
+		text-align: center;
+	  }
+	  }
+	  .form-submit {
+		background: url("../images/search.png") no-repeat scroll center center transparent;
+		margin: 0;
+		position: absolute;
+		right: 5px;
+		text-indent: -999em;
+		top: 3px;
+	  }
+	  .form-text {
+		background-color: #4c4c4c;
+		box-shadow: 0px 1px 1px -1px #000000 inset, 0 1px 0 0 rgba(255, 255, 255, 0.4);
+		border-radius: 50px;
+		border: none;
+		color: #979797;
+		padding: 0 5px 0 10px;
+		width: 200px;
+		height: 30px;
+		font-style: italic;
+		font-family: Arial, serif;
+		&:hover{
+			background-color: #242424;
+		}
+	  }
+	}
+}
+
+#block-aggregator-category-1 { /* Block for the latest news items in the first category */
+}
+
+#block-aggregator-feed-1 { /* Block for the latest news items in the first feed */
+}
+
+#block-block-1 { /* First block created with "Add block" link */
+}
+
+#block-blog-recent { /* "Recent blog posts" block */
+}
+
+#block-book-navigation { /* "Book navigation" block for the current book's table of contents */
+}
+
+#block-comment-recent { /* "Recent comments" block */
+}
+
+#block-forum-active { /* "Active forum topics" block */
+}
+
+#block-forum-new { /* "New forum topics" block */
+}
+
+#block-locale-language { /* Language switcher block */
+}
+
+#block-menu-menu-NAME { /* Custom menu block */
+}
+
+#block-node-recent { /* "Recent content" block */
+}
+
+#block-node-syndicate { /* "Syndicate" block for primary RSS feed; see also page.css's .feed-icon */
+}
+
+#block-poll-recent { /* "Most recent poll" block */
+}
+
+#block-profile-author-information { /* "Author information" block for the profile of the page's author */
+}
+
+#block-search-form { /* "Search form" block */
+	label{
+		padding-left: 5px;
+	}
+	#search-block-form 
+	{
+		display: inline-block;
+		margin: 10px 0;
+		width: 100%;
+		
+		
+	.form-submit {
+		background: url("../images/search.png") no-repeat scroll center center transparent;
+		margin: 0;
+		position: absolute;
+		right: 0px;
+		text-indent: -999em;
+		top: 2px;
+		
+	  }
+
+	
+	}
+
+}
+
+#block-shortcut-shortcuts { /* "Shortcuts" block */
+}
+
+#block-statistics-popular { /* "Popular content" block */
+}
+
+#block-system-main-menu { /* "Main menu" block */
+	
+}
+
+#block-system-management { /* "Management" block for Drupal management menu */
+}
+
+#block-system-navigation { /* "Navigation" block for Drupal navigation menu */
+}
+
+#block-system-user-menu { /* "User menu" block for Drupal user menu */
+}
+
+#block-system-help { /* "System help" block */
+}
+
+#block-system-main { /* "Main page content" block */
+}
+
+#block-system-powered-by { /* "Powered by Drupal" block */
+}
+
+#block-user-login { /* "User login form" block */
+}
+
+#block-user-new { /* "Who's new" block for a list of the newest users */
+}
+#tasks .action-links{
+	margin: 0 0 10px 0;
+}
+#block-user-online { /* "Who's online" block for a list of the online users */
+}
+
+#search-block-form .container-inline{
+	display: inline-block;
+	position: relative;
+	margin: 0;
+}
+
+
+#content, .region-sidebar-first, .region-sidebar-second {
+    -moz-box-sizing: border-box;
+  
+    word-wrap: break-word;
+}

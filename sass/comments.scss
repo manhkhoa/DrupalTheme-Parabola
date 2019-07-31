@@ -1,0 +1,169 @@
+/**
+ * @file
+ * Comment Styling
+ */
+
+@import "base";
+
+
+.comments { /* Wrapper for the list of comments and its title */
+  
+
+  h2.title { /* Heading for the list of comments */
+  }
+
+  h2.comment-form { /* Heading for the comment form */
+  }
+}
+header{
+	img{
+		
+	}
+}
+.content-comment{
+	p{
+		margin: 5px 0;
+	}
+	border: 1px solid #e1e1e1;
+	background-color: #eee;
+	position: relative;
+	margin-left: 100px;
+	padding: 10px;
+	&:before{
+	content: "";
+	top: 15px;
+	left: -10px;
+	position: absolute;
+	background: url('../images/comment.png') no-repeat;
+	height: 13px;
+	width: 10px;
+	}
+		
+}
+#comments>.indented{
+  padding-bottom: 15px;
+  
+  .comment {
+    border: none;
+  }
+}
+#comments{
+	
+	img{
+		height: 75px;
+		width: 75px;
+		box-shadow: none;
+	}
+	h2{
+		margin-bottom: 0;
+	}
+	li{
+		padding: 0 10px 0 0;
+	}
+	label{
+		color: #666;
+	}
+}
+input#edit-subject, input#edit-mail, input#edit-name, select#edit-cid
+{
+	-moz-box-shadow:    inset 0 1px 0 #b0b0b0;
+   -webkit-box-shadow: inset 0 1px 0 #b0b0b0;
+   box-shadow:         inset 0 1px 0 #b0b0b0;
+   border: 1px solid #bebebe;
+}
+#edit-message{
+	-moz-box-shadow:    inset 0 2px 0 #b0b0b0;
+   -webkit-box-shadow: inset 0 2px 0 #b0b0b0;
+   box-shadow:         inset 0 2px 0 #b0b0b0;
+   border: 1px solid #bebebe;
+}
+.comment { /* Wrapper for a single comment */
+  border-top: 1px dashed #999999;
+  padding-top: 20px;
+
+  &:first-child {
+    border: none;
+  }
+
+  &.comment-preview { /* Preview of the comment before submitting new or updated comment */
+    background-color: #ffffea; /* Drupal core will use a #ffffea background. See #1110842 */
+  }
+
+  &.new { /* A new comment since the user last viewed the page. */
+	color: red;
+  }
+
+  &.first { /* The first comment in the list of comments */
+    border: none;
+  }
+
+  &.last { /* The last comment in the list of comments */
+  }
+
+  &.odd { /* An odd-numbered comment in the list of comments */
+  }
+
+  &.even { /* An even-numbered comment in the list of comments */
+  }
+
+  &.comment-by-anonymous { /* A comment created by an anonymous user */
+  }
+
+  &.comment-by-node-author { /* A comment created by the node's author */
+  }
+
+  &.comment-by-viewer { /* A comment created by the current user */
+  }
+
+  h3.comment-title { /* Comment title */
+
+  }
+
+  .new { /* "New" marker for comments that are new for the current user */
+    color: #c00;
+  }
+
+  .user-picture { /* The picture of the comment author */
+	float: left;
+	
+  }
+  .username{
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 12;
+	color: #191919;
+  }
+  .submitted { /* The "posted by" information */
+
+  }
+
+  .permalink { /* Comment's permalink wrapper */
+    text-transform: capitalize;
+    font-size: 75%;
+  }
+
+  .user-signature { /* The user's signature */
+  }
+
+  ul.links { /* Comment links. See also the ul.links declaration in the pages.css. */
+	margin: 0;
+    padding: 5px 0 0 0;
+    text-transform: capitalize; 
+	li a {
+	  
+	}
+  }
+}
+
+.indented { /* Nested comments are indented */
+  margin-left: $indent-amount; /* Drupal core uses a 25px left margin */
+}
+
+.comment-unpublished { /* Unpublished comments */
+  /* background-color: #fff4f4; */ /* Drupal core uses a #fff4f4 background */
+
+  p.unpublished { /* The word "Unpublished" displayed underneath the content. */
+    @include unpublished-div;
+  }
+}
+

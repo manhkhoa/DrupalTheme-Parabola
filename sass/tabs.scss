@@ -1,0 +1,135 @@
+/**
+ * @file
+ * Tabs Styling
+ *
+ * Adds styles for the primary and secondary tabs.
+ *
+ * Compare this with default CSS found in the system module's stylesheet (a copy
+ * of which is in drupal7-reference.css.)
+ */
+
+@import "base";
+
+
+// Some variables to make altering the styling easier.
+$tabs-container-bg: #fff;
+$tabs-border: #bbb;
+
+
+/*
+ * Basic positioning styles shared by primary and secondary tabs.
+ */
+
+ul.primary{
+  @include clearfix;
+  list-style: none;
+  margin: 1em 0 1.5em;
+  padding: 0;
+  white-space: nowrap;
+  background: #ffffff;
+  border-bottom: 1px solid #e3e2e2;
+
+  li {
+    float: left; /* LTR */
+    margin: 0;
+  }
+
+  a {
+    border-right: 0;
+    border-bottom: 0;
+    display: block;
+    line-height: 1.5em;
+    text-decoration: none;
+	font-family: "Bebas Neue";
+	font-size: 1.167em;
+	color: #333;
+	font-weight: 100;
+	padding: 10px 20px 8px;
+	
+  }
+}
+
+ul.secondary {
+  @include clearfix;
+  list-style: none;
+  margin: 1em 0 1.5em -20px;
+  padding: 0 2x;
+  white-space: nowrap;
+
+  li {
+    float: left; /* LTR */
+    margin: 0.5em 3px 0;
+  }
+
+  a {
+    border-right: 0;
+    border-bottom: 0;
+    display: block;
+    line-height: 1.5em;
+    text-decoration: none;
+	font-family: Arial;
+	font-size: 12px;
+	color: #555;
+  }
+}
+/*
+ * Primary tabs
+ */
+
+ul.primary {
+  li {
+    margin: 0; /* LTR */
+  }
+  li.active {
+    margin-bottom: -1px; /* Overlap the ul's border. */
+  }
+
+  a:link,
+  a:visited {
+    
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  a:focus {
+    
+  }
+  a.active {
+    background-color: #e3e2e2;
+    border-color: #fff;
+	color: #3fa757;
+	padding: 10px 20px 8px;
+	text-decoration: none;
+  }
+}
+
+/*
+ * Secondary tabs
+ */
+
+ul.secondary {
+  font-size: .9em;
+  margin-top: -1.5em; /* Collapse bottom margin of ul.primary. */
+  padding-bottom: .5em;
+
+  a:link,
+  a:visited {
+    margin-left: 10px;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  a:focus {
+    
+  }
+  a.active{
+    border-bottom: 4px solid #191818;
+	text-decoration: none;
+  }
+  a:active {
+  }
+}
+
+#task ul.primary li a{
+	text-decoration: none;
+}

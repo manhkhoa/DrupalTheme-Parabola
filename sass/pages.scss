@@ -1,0 +1,517 @@
+/**
+ * @file
+ * Page Styling
+ *
+ * Style the markup found in page.tpl.php. Also includes some styling of
+ * miscellaneous Drupal elements that appear in the $content variable, such as
+ * ul.links, .pager, .more-link, etc.
+ */
+
+@import "base";
+.container {
+  max-width: $container;
+  margin: 0 auto;
+  @include zen-grid-container;
+}
+
+/* Page */
+.page-wrapper{
+	background-color: #000; 
+	background-image: url(../images/page.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+}
+h1#site-name{
+	a:hover{
+		text-decoration: none;
+	}
+}
+.node-title{
+		font-size: 2em;
+		font-family: Georgia, serif;
+		a{
+		color: #191919;
+		text-transform: capitalize;
+		&:hover{
+			text-decoration: none;
+		}
+		}
+}
+
+/*
+ * The skip-link link will be completely hidden until a user tabs to the link.
+ * See the element-focusable rule in system.base.css.
+ */
+
+#skip-link {
+  margin: 0;
+
+  a,
+  a:visited {
+    display: block;
+    width: 100%;
+    padding: 2px 0 3px 0;
+    text-align: center;
+    background-color: #666;
+    color: #fff;
+  }
+}
+
+/*
+ * Header
+ */
+
+#header {
+}
+#name-and-slogan {
+  float: left;
+  padding-top: 10px;
+  margin: 0 10px;
+}
+#logo { /* Wrapping link for logo */
+  margin: 0;
+  padding: 0;
+
+  img {
+    vertical-align: bottom;
+	background: none;
+    border: none;
+	box-shadow: none;
+	padding: 0;
+  }
+}
+
+#site-name { /* The name of the website */
+  
+
+  a:link,
+  a:visited {
+    
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+}
+
+#site-slogan { /* The slogan (or tagline) of a website */
+  margin: 0;
+  font-size: 1em;
+}
+
+/* Region help */
+.region-help {
+  background-color: #fff;
+  border: 1px solid #cecece;
+  margin: 10px 0;
+}
+/*Region*/
+.region-top-panel, .region-feature, .region-bottom-panel{
+	margin-bottom: 30px;
+}
+/* Region header-top */
+#header-top-wrapper {
+	background-image: url(../images/header-top.png);
+	color: #fefefe;
+	border-bottom: 1px solid #666;
+	position: relative;
+	.block-title{
+		color: #ffffff;
+	}
+	li,a {
+		color: #bfbfbf;
+		}
+	
+}
+
+/* Region header navigation */
+#header-navigation-wrapper{
+	background: url("../images/header-navigation.png") repeat scroll top left transparent;
+	border-top: 1px solid #666666;
+	box-shadow: 0 1px 10px 0 #3F3F3F inset;
+	min-height: 40px;
+}
+#header-navigation{
+	position: relative;
+}
+.region-header-navigation {
+	#block-search-form{
+		position: absolute;
+		right: 0;
+		top: -5px;
+		z-index: 99;
+		
+	}
+	
+}
+.menu-secondary{
+	nav#secondary-menu{
+			right: 230px;
+			float: right;
+			padding: 5px;
+			position: relative;
+			ul li a{
+				color: #999999;
+			}
+	}
+}
+/* Region header */
+#header-wrapper{
+	background-color: rgba(255, 255, 255, 0.5);
+	margin-bottom: 50px;
+	box-shadow: 0 -1px 5px 0 #000000;
+	position: relative;
+	
+}
+
+
+.region-header { /* Wrapper for any blocks placed in the header region */
+  float: left;
+  width: 70%;
+  
+}
+
+/* Region Feature */
+.region-feature {
+	background-color: #ffffff;
+	opacity: 0.9;
+	font-size: 13;
+	font-style: italic;
+	margin-top: 50px;
+	h2{
+		font-size: 4em;
+		
+	}
+}
+
+/* Region Top panel */
+.region-top-panel{
+	background: #ffffff;
+	
+	.block-title{
+		border-bottom: 1px dotted #919191;
+		color: #191919;
+		font-style: italic;
+		font-size: 1.5em;
+		font-family: Georgia, serif;
+		text-transform: capitalize;
+		padding-bottom: 10px;
+	}
+	p{
+		font-family: Arial, serif;
+		font-size: 1em;
+		font-style: italic;
+		color: #919191;
+		
+	}
+	ul li{
+		color: #919191;
+	}
+}
+
+ /* REgion bottom panel */
+.region-bottom-panel {
+	background-color: #ffffff;
+	.block-title{
+		border-bottom: 1px dotted #919191;
+		color: #191919;
+		font-style: italic;
+		font-size: 1.5em;
+		font-family: Georgia, serif;
+		text-transform: capitalize;
+		padding-bottom: 10px;
+	}
+	p{
+		font-family: Arial, serif;
+		font-size: 1em;
+		font-style: italic;
+		color: #919191;
+		
+	}
+	
+	li{
+		color: #919191;
+	}
+	p{
+		margin: 5px 0 5px 0;
+	}
+  clear: both;
+}
+/* Footer and footer panel */
+#footer-panel-wrapper{
+	background-image: url(../images/footer-top.png);
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #444;
+	@include box-shadow(0 3px 5px 0 #111111 inset);
+	.region-footer-panel{
+		color: #bdbdbd;
+		.block-title{
+			color: #fff;
+			font-size: 30px;
+		}
+	}
+}
+.region-footer {
+	background-color: #242424;
+	border-top: 1px solid #111111;
+	font-family: Arial;
+	.block-title{
+		color: #ffffff;
+		font-size: 30px;
+	}
+	a{
+		color: #999;
+	}
+	ul li{
+		list-style: disc;
+		color: #bdbdbd;
+	}
+}
+
+
+/* Main (container for everything else) */
+#main {}
+
+
+		/* Content */
+
+
+#content-messages{
+	
+}
+.action-links li a{
+}
+/* Region content Top */
+.region-content-top {
+	border-bottom: 1px solid #bdbdbd;
+	.block .block-inner{
+		padding: 0 0 10px 0;
+	}
+	
+}
+
+
+/* Region content Bottom */
+.region-content-bottom {
+	a{
+		color: #3fa757;
+		font-size: 13px;
+		font-family: Georgia;
+	}
+	p{
+		color: #666666;
+		font-family: Georgia;
+		font-size: 12px;
+		margin-bottom: 5px;
+	}
+}
+
+#content {
+	margin-bottom: 30px;
+	
+}
+#main-content{
+	margin: 0 10px;
+	background: #ffffff;
+	padding: 10px 20px 20px 20px;
+}
+/*Profile user*/
+.profile .user-picture {
+    float: none;
+}
+
+.profile dl {
+    margin: 1em 0 1.5em;
+	padding-left: 0;
+}
+
+div.messages { /* Important messages (status, warning, and error) for the user. See also the declarations in messages.css. */
+  margin: 1.5em 0; /* Drupal core uses "6px 0" margin */
+
+  ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+#block-system-help {
+  background: url("../images/help_icon.png") no-repeat scroll 12px center;
+  color: #000;
+  min-height: 25px;
+  padding: 10px 10px 0px 60px;
+  margin-bottom:10px;
+}
+
+
+div.status { /* Normal priority messages */
+   background: url("../images/msg_status.png") no-repeat 20px 50% #acf5ac;
+  border-color: #4e974e;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+div.warning,
+tr.warning { /* Medium priority messages */
+  /* border: 1px solid #f0c020; */ /* Drupal core uses: 1px solid #f0c020 */
+  background: url("../images/msg_warning.png") no-repeat 20px 50% #fff3c3;
+  border-color: #b2a46e;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+div.error,
+tr.error { /* High priority messages. See also the .error declaration below. */
+  background: url("../images/msg_error.png") no-repeat 20px 50% #ffbdba;
+  border-color: #922c27;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.error { /* Errors that are separate from div.messages status messages. */
+  /* color: #e55; */ /* Drupal core uses a #e55 background */
+}
+
+.warning { /* Warnings that are separate from div.messages status messages. */
+  /* color: #e09010; */ /* Drupal core uses a #e09010 background */
+}
+
+ul.tabs { /* See also the tabs.css file. */
+	li{
+		list-style: none;
+	}
+}
+
+.more-help-link { /* Link to more help */
+}
+
+.region-content { /* Wrapper for the actual page content */
+	
+}
+/*
+ * First sidebar (on left in LTR languages, on right in RTL)
+ *
+ * Remember to NOT add padding or margin to your .region-sidebar-first
+ * (see the layout.css file.)
+ */
+#main #content, section.region-sidebar-first, section.region-sidebar-second {
+	padding-left: 0;
+	padding-right: 0;
+ }
+.region-sidebar-first .first .block-inner{
+		
+}
+.region-sidebar-first .first .block-title{
+	
+}
+.region-sidebar-first .block-title{
+	color: #999;
+	margin-bottom: 15px;
+}
+.region-sidebar-first{
+ /* padding-right: 10px; */
+ li,a {
+	color: #3fa757;
+ }
+ label, p{
+	color: #666;
+ }
+}
+
+
+
+/*
+ * Page bottom
+ */
+
+.region-bottom { /* Wrapper for any blocks placed in the page bottom region */
+}
+.region-content-bottom{
+	.block .block-inner{
+		padding: 0 0 10px 0;
+		.block-title{
+			font-size: 2.5em;
+		}
+	}
+	
+}
+
+
+
+tbody {
+  border-top: none;
+}
+h1,h2,h3,h4,h5{
+	a {
+	&:hover {
+		text-decoration: none;
+	}
+	}
+}
+
+
+/* Feed icons */
+#feed-icons {
+  .feed-icon {
+    img {}
+  }
+  a.feed-icon {}
+}
+
+
+/* Search results list. */
+.search-results {
+  .search-result {}
+  .title {}
+  .search-snippet-info {}
+  p {}
+  .search-snippet {}
+  .search-info {
+  }
+}
+
+span.field-label { /* The inline field label used by the Fences module */
+  padding: 0 1em 0 0; /* LTR */
+}
+
+
+/*Overlay*/
+/*
+#overlay{
+	#page{
+	
+	}
+	#header-navigation-wrapper{
+		display: none;
+	}
+	#footer-panel-wrapper{
+		border: none;
+	}
+	padding: 0.2em 26px 0 0.2em;
+	background: #ffffff;
+	#overlay-title{
+		color: #000000;
+	}
+}
+
+*/
+/* Blog detail title */
+.node-type-blog, .page-blog, .page-archive{
+	#page-title{
+		font-family: Georgia, serif;
+		font-size: 2.5em;
+		text-transform: capitalize;
+	}
+	 
+}
+/***/
+article{
+	ul.links li{
+		border-right: 1px solid #3FA757;
+	}
+	header h3{
+		margin-top: 0;
+	}
+}

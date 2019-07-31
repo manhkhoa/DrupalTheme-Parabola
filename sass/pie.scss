@@ -1,0 +1,369 @@
+// this file demonstrates how to use the CSS PIE extension for
+// legacy versions of Internet Explorer. In many cases, PIE will allow
+// you to style in CSS things that you'd have to do using image chops otherwise.
+//
+// Note: Each element that has PIE enabled on it will add about 10ms to your page load.
+@import "compass/css3/pie";
+@import "compass/css3";
+
+// Set this to wherever you end up putting your behavior file.
+//
+// **Note:** this file must be served as a root-relative resource or
+// else IE will interpret it as relative to the current webpage
+// instead of the stylesheet.
+//
+// **Also Note:** this file must be delivered with a mime-type of:
+//
+//    text/x-component
+$pie-behavior: url("http://localhost/gp/themes/theming/sites/all/themes/parabola/css/PIE.htc");
+
+// It is suggested that you use Sass's @extend directive to apply the PIE
+// behavior to your elements. Setting this variable will tell the `pie` mixin
+// to extend it. Or you can just extend the base class yourself.
+$pie-base-class: pie-element;
+
+// There are two approaches to creating PIE elements
+// The default approach is to make the element position: relative.
+.pie-element {
+  // relative is the default, so passing relative
+  // is redundant, but we do it here for clarity.
+  @include pie-element(relative);
+}
+
+.bordered {
+  @include pie; // Because $pie-base-class is set, this results in an extend of .pie-element. 
+  @include border-radius(5px);
+}
+.gradient {
+  @include pie; // Because $pie-base-class is set, this results in an extend of .pie-element.
+  @include background(linear-gradient(#f00, #00f));
+}
+// But sometimes this messes up your positioning
+// So you can also use z-indexing. In this case
+// an ancestor element before or having the first
+// opaque background should be marked as a pie-container
+// which gives it a z-index of 0 (actually any z-index
+// can be provided to the pie-container mixin).
+// And then the pie element itself should be given
+// a z-index of -1.
+.pie-container {
+  @include pie-container;
+}
+
+.z-pie-element {
+  // this will get a z-index of 0, you can pass a z-index value if you want
+  @include pie-element(z-index);
+}
+
+// This is just a simple example of how to use the z-index approach.
+.widget {
+  @extend .pie-container;
+  h3 {
+    @include pie(z-pie-element); // This will extend .z-pie-element instead of .pie-element
+  }
+}
+
+// Lastly, you can just include the pie-element mixin directly if you need to do a one-off:
+.has-gradient {
+  @include pie-element(relative);
+  @include background(linear-gradient(#f00, #00f));
+}
+#header-wrapper {
+	background-color: #ffffff;
+	@include opacity(0.5);
+}
+/*
+.region-feature {
+  background-color: #ffffff;
+  @include opacity(0.9);
+}
+*/
+fieldset legend {
+  @include pie-element(relative);
+  @include border-radius(3px);
+  @include box-shadow(0 2px 1px 0 #EEEEEE);
+}
+fieldset{
+	@include pie-element(relative);
+	@include border-radius(4px);
+	@include box-shadow(0 2px 1px 0 #EEEEEE);
+}
+.block-search .form-text{
+	@include pie-element(relative);
+	@include border-radius(50px);
+	@include box-shadow(0 1px 1px 0 #EEEEEE);
+}
+img {
+  @include pie-element(relative);
+  @include box-shadow(0 0 4px 0 #C0C0C0);
+   border: 1px solid #C0C0C0;
+   position: relative;
+}
+a img:hover {
+    border-color: #3FA757;
+}
+tr.odd {
+    background-color: #F8F8F8;
+}
+tr.even {
+    background-color: #FFFFFF;
+}
+
+#menu-bar {
+		@include pie;
+		font-weight: normal;
+  ul.menu {
+		@include pie;
+		background: #646464;
+		margin-left: 5px;
+		margin-top: 5px;
+    li {
+	  @include pie;
+	  background: #646464;
+	  
+	  &:hover {
+	    a {} 
+	  }
+      &.sfHover,
+      &:hover {
+	  
+	  	  
+        ul {  
+          li {}
+        }
+	  }
+  
+      ul.menu {
+	  background: #646464;
+        li { 
+		  background: #646464;
+		  &.first{}
+    
+          a, a.active {
+			
+			&:hover {}
+          }
+        }
+      }
+   
+	  a {
+		@include pie;
+		//border-top: 2px solid transparent;
+		//border-left: 2px solid transparent;
+		
+		&.active, &:hover {
+		  background: #646464;
+		  //border-top: 2px inset #000;
+		  //border-left: 2px inset #000;
+		  //background:rgba(0, 0, 0, 0.1);
+		  @include pie-element(relative);
+		  @include border-radius(4px);
+		  filter: alpha(opacity=90);
+		  color: #ffffff;
+		  @include box-shadow(0 1px 1px 0 rgba(52, 52, 52, 0.4)); 
+		}
+	  }
+    }
+  }
+}
+
+
+div.status {
+  @include pie-element(relative);
+  @include border-radius(4px);
+}
+input.form-text, .form-select, .form-file {
+  border-top: 2px inset #bebebe;
+}
+input.form-text:focus, .form-select:focus, .form-file:focus {
+  border-top: 2px solid #ffcc00;
+}
+
+/*-------------------------------CUSTOM------------------------------------------------*/
+.sidebars .block-user .block-inner #user-login-form{
+	.form-text{
+		@include pie-element(relative);
+		background: none repeat scroll 0 0 #242424;
+		@include box-shadow(1px 1px 2px -1px #000000 inset, 0 1px 1px 0 rgba(52, 52, 52, 0.4));
+	}
+}
+.views-slideshow-cycle-main-frame-row{
+	width: 100%;
+}
+.views-slideshow-pager-field-item{
+	width: 25%;
+	height: 129px;
+}
+#block-views-gallery-list-block-1{
+
+		.views-row {
+			
+			.views-field-title{
+				@include opacity(0);
+				@include pie-element(relative);
+				height: 0;
+			}
+			&:hover {
+				.field-content a img{
+					@include opacity(0);
+					@include pie-element(relative);
+				}
+				.views-field-title {
+					display: block;
+					@include opacity(1);
+					@include pie-element(relative);
+					text-align: center;
+					position: absolute;
+					bottom: 65px;
+					left: 0;
+					width: 100%;					
+					a{
+						
+						font-family: "Bebas Neue";
+						font-size: 18px;
+						color: #737373;
+						
+					}
+					
+				}
+			}
+		img{
+			border: none;
+			box-shadow: none;
+			padding: 0;
+			background:none;
+			width: 293px;
+			height: 169px;
+			display: block;
+			
+			}
+		}
+}
+.block-about{
+	.block-inner{
+		margin-right: 10px;
+		@include opacity(0.9);
+		@include pie-element(relative);
+	}
+}
+// Slideshow
+
+	.views-slideshow-cycle-main-frame-row-item{
+		.views-field-field-slogan{
+			@include opacity(0.9);
+			@include pie-element(relative);
+			background: #000000;
+		}
+	}
+.region-feature .last.block-slideshow{
+	height: 498px;
+	@include opacity(1);
+	@include pie-element(relative);
+	.block-inner{
+		width: 100%;
+		
+	}
+}
+
+.road-left{
+		width: 55px;
+		height: 35px;
+		padding-right: 20px;
+}
+//Blog Page
+css3-container{
+	display: none;
+}
+.page-blog{
+	#main-content{
+		
+		ul.pager{
+		margin-top: 15px;
+		}
+	}
+	#block-views-blog-list-block-4{
+			.views-field-field-image{
+				width: 57px;
+				height: 57px;
+				padding-right: 10px;
+				float: left;
+			}
+	}
+	.view-blog .views-row{
+		.views-field-picture .user-picture{
+			width: 22px;
+			height: 22px;
+			padding-right: 20px;
+		}
+		.views-field-field-image{
+			height: 300px;
+			background: none;
+			padding-bottom: 15px;
+		}
+		.views-field-body{
+			margin-top: 15px;
+		}
+	}
+
+}
+
+// Two sidebars
+.two-sidebars{
+	#block-views-blog-list-block{
+		.views-field-field-image{
+			width: 55px;
+			height: 49px;
+			padding-right: 10px;
+			float: left;
+		}
+		
+	}
+}
+
+// Gallery 1 column
+.page-gallery-1columns{
+	.views-field-field-image{
+			width: 550px;
+			//height: 350px;
+			float: left;
+	}
+	
+}
+
+// Gallery 3 columns
+.page-gallery-3columns{
+	.views-field-field-image img{
+			width: 350px;
+			height: 220px;
+			float: left;
+			margin-bottom: 15px;
+	}
+}
+//Header Login
+.block-header-navigation{
+	
+	ul li{
+		float: left;
+		list-style: none;
+		margin-top: -15px;
+		border-left: 1px solid #303030;
+		padding: 12px 12px 9px 12px;
+		a{
+			color: #999999;
+			
+		}
+	}
+	ul li.header-login{
+		border-right: 1px solid #303030;
+		height: 17px;
+		padding: 11px 10px 11px 25px !important;
+	}
+}
+// Block Search
+#block-search-form{
+	.form-text{
+		padding-top: 5px;
+		height: 25px;
+	}
+}
+//

@@ -1,0 +1,520 @@
+/**
+ * @file
+ * Positioning for responsive layout .
+ *
+ * Define CSS classes to create a table-free, 3-column, 2-column, or single
+ * column layout depending on whether blocks are enabled in the left or right
+ * columns.
+ *
+ * This layout uses the Zen Grids plugin for Compass: http://zengrids.com
+ */
+
+@import "base";
+$zen-gutter-width:  20px;
+
+// IE6-7 don't support box-sizing: border-box. We can fix this in 1 of 3 ways:
+// - Drop support for IE 6/7. :-) In the _base.scss, set $legacy-support-for-ie6
+//   and $legacy-support-for-ie7 to false.
+// - (Preferred) Install the box-sizing polyfill and set the variable below to
+//   the absolute path URL to the boxsizing.htc file.
+//   @see https://github.com/Schepp/box-sizing-polyfill
+//   $box-sizing-polyfill-path: "/path/to/boxsizing.htc";
+// - Use the same CSS unit for grid width and gutter width (use px for both or
+//   use % for both, etc.) and set the box-sizing variable to content-box.
+//   $zen-box-sizing: content-box;
+
+
+// You can generate more efficient CSS if you manually apply the
+// zen-grid-item-base mixin to all grid items from within a single ruleset.
+$zen-auto-include-item-base: false;
+// $zen-auto-include-flow-item-base: false;
+
+
+/*
+ * Center the page.
+ */
+
+#page,
+.region-bottom {
+  /* For screen sizes larger than 1200px, prevent excessively long lines of text
+     by setting a max-width. */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+/*
+ * Apply the shared properties of grid items in a single, efficient ruleset.
+ */
+// See the note about $zen-auto-include-item-base above.
+
+#content,
+.region-sidebar-first,
+.region-sidebar-second{
+	@include zen-grid-item-base();
+}
+
+/*
+ * Containers for grid items and flow items.
+ */
+
+
+#main {
+  @include zen-grid-container();
+}
+
+@media all and (min-width: 960px) {
+  /*
+   * Use 5 grid columns for larger screens.
+   */
+  $zen-column-count: 12;
+
+  /*
+   * The layout Sidebar - Content - Sidebar when there is only one sidebar, the left one.
+   */
+
+  .three-col-grail.sidebar-first {
+    #content { /* Span 4 columns, starting in 2nd column from left. */
+      @include zen-grid-item(9, 4);
+    }
+
+    .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+      @include zen-grid-item(3, 1);
+    }
+  }
+
+  /*
+   * The layout Sidebar - Content - Sidebar when there is only one sidebar, the right one.
+   */
+
+  .three-col-grail.sidebar-second {
+    #content { /* Span 4 columns, starting in 1st column from left. */
+      @include zen-grid-item(8, 1);
+    }
+
+    .region-sidebar-second { /* Span 1 column, starting in 5th column from left. */
+      @include zen-grid-item(4, 9);
+    }
+  }
+
+  /*
+   * The layout Sidebar - Content - Sidebar when there are two sidebars.
+   */
+
+  .three-col-grail.two-sidebars {
+    #content { 
+      @include zen-grid-item(6, 4);
+    }
+
+    .region-sidebar-first { 
+      @include zen-grid-item(3, 1);
+    }
+
+    .region-sidebar-second { 
+      @include zen-grid-item(3, 10);
+    }
+  }
+  
+  .region-four-first {
+     @include zen-grid-item(3, 1,left);
+   }
+    .region-four-second {
+     @include zen-grid-item(3, 4,left);
+   }
+    .region-four-third {
+     @include zen-grid-item(3, 7,left);
+   }
+    .region-four-fourth{
+     @include zen-grid-item(3, 10,left);
+   }
+}
+
+/* Portrait smartphone */
+@media all and (max-width: 515px) {
+   $zen-column-count: 1;
+   #page {
+     padding: 0;
+   }
+   #main {
+    padding-top: 3em; /* Move all the children of #main down to make room. */
+    position: relative;
+   }
+   .sidebar-first {
+      #content { /* Span 1 columns, starting in 2nd column from left. */
+        @include zen-grid-item(1, 1);
+      }
+
+      .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+        @include zen-grid-item(1, 1);
+		@include zen-clear(left);
+      }
+    }
+	
+	.sidebar-second {
+      #content { /* Span 1 columns, starting in 1st column from left. */
+        @include zen-grid-item(1, 1,left);
+      }
+
+      .region-sidebar-second { /* Span 1 column, starting in 5th column from left. */
+        @include zen-grid-item(1, 1,left);
+		@include zen-clear(left);
+      }
+    }
+	
+	.two-sidebars {
+    #content { /* Span 1 columns, starting in 2nd column from left. */
+      @include zen-grid-item(1, 1,left);
+    }
+
+    .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+      @include zen-grid-item(1, 1,left);
+	  @include zen-clear(left);
+    }
+
+    .region-sidebar-second { /* Span 1 column, starting in 5th column from left. */
+      @include zen-grid-item(1, 1,left);
+	  @include zen-clear(left);
+     }
+    }
+	
+	.region-four-first,
+	.region-four-second,
+	.region-four-third,
+	.region-four-fourth {
+	  @include zen-grid-item(1,1,left);
+	  @include zen-clear(left);
+	}
+	
+	#branding {
+	  float: none;
+	  text-align: center;
+	}
+	#navigation {
+	  float: none;
+	}
+	
+	.breadcrumb {
+	  padding: 10px;
+	}
+	.region-feature .block-inner, .region-top-panel .block-inner, #content {
+		padding: 0;
+	}
+	#main {
+	  .sidebars {
+	    margin-top: 20px;
+		
+		.sidebar {
+	      padding: 0;
+	    }
+	  }
+	}
+	#main-content{
+		margin: 0;
+		padding: 0 10px;
+		.block{
+			padding: 0;
+		}
+	}
+	/* blog pages */
+	.node-blog {
+	  .node-title {
+	    display: block;
+	  }
+	}
+	
+	
+	
+
+	/* menu */
+#menu-bar {
+  display: inline-block;
+  position: relative;
+  margin: 10px 0;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  
+  #menu-icon {
+	background: #4f4847; /* Old browsers */
+	background: -moz-linear-gradient(top, #4f4847 0%, #1d1c1d 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4f4847), color-stop(100%,#1d1c1d)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #4f4847 0%,#1d1c1d 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #4f4847 0%,#1d1c1d 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #4f4847 0%,#1d1c1d 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #4f4847 0%,#1d1c1d 100%); /* W3C */
+	border: none;
+	box-shadow: none;
+	color: #E4EAEE;
+	cursor: pointer;
+	display: block;
+	font-size: 18px;
+	padding: 10px 10px 10px 30px;
+	position: relative;
+	text-align: left;
+	width: auto;
+
+	&:hover,
+	&.active {
+		background: #1d1c1d; /* Old browsers */
+		background: -moz-linear-gradient(top, #1d1c1d 0%, #4f4847 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1d1c1d), color-stop(100%,#4f4847)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #1d1c1d 0%, #4f4847 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #1d1c1d 0%, #4f4847 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #1d1c1d 0%, #4f4847 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #1d1c1d 0%,#4f4847 100%); /* W3C */
+		border: none;
+		box-shadow: none;
+	}
+	&:before {
+		background: url("../../images/menu-icon.png") no-repeat scroll 5px center transparent;
+		content: "";
+		height: 19px;
+		left: 0;
+		position: absolute;
+		top: 15px;
+		width: 19px;
+	}
+	&:after {
+		background: url("../../images/menu-icon-after.png") no-repeat scroll center center transparent;
+		content: "";
+		display: block;
+		height: 7px;
+		position: absolute;
+		right: 10px;
+		top: 21px;
+		width: 14px;
+	}
+  }
+  
+  ul.menu {
+	background: #282828; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #282828 0%, #2a2521 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#282828), color-stop(100%,#2a2521)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, #282828 0%,#2a2521 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, #282828 0%,#2a2521 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg, #282828 0%,#2a2521 100%); /* IE10+ */
+	background: linear-gradient(135deg, #282828 0%,#2a2521 100%); /* W3C */
+	border: none;
+	box-shadow: none;
+	clear: both;
+	display: none;
+	padding: 0;
+	position: absolute;
+	top: 47px;
+	width: 100%;
+	z-index: 100;
+	
+	li {
+	  border-bottom: 1px solid #FFFFFF;
+	  float: none;
+	  padding: 8px 5px;
+	  width: 100%;
+	  margin: 0;
+	  box-shadow: none;
+	  line-height: 2.5em;
+	  &:hover ul,
+	  &.sfHover ul {
+		left: -999em; 
+	  }
+	  &.last{
+		border: none;
+	  }
+	  a,
+	  &:hover a,
+	  a.active {
+		background-color: transparent;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		display: block;
+		padding: 0px;
+		width: auto;
+		color:#ffffff;
+	  }
+	  &:hover a{
+	    color: #3FA757;
+	  }
+	  ul.menu {
+		display: none !important;
+	  }
+	}
+  }
+}
+	
+    
+	.breadcrumb {
+	  padding: 0 10px;
+	}
+	#main {
+	  .sidebars {
+	    margin-top: 20px;
+		
+		.sidebar {
+	      padding: 0;
+	    }
+	  }
+	}
+	/* blog pages */
+	.node-blog {
+	  .node-title {
+	    display: block;
+	  }
+	}
+	
+}
+@media all and (min-width: 516px) and (max-width: 768px) {
+  /*
+   * Use 4 grid columns for smaller screens.
+   */
+  $zen-column-count: 4;
+  
+  #main-content{
+	margin: 0;
+  }
+	
+	
+	section.region-sidebar-first{
+		padding-right: 5px;
+	}
+
+	section.region-sidebar-second
+	{
+		padding-left: 5px;
+	}
+  /*
+   * The layout when there is only one sidebar, the left one.
+   */
+
+  .sidebar-first {
+    #content { /* Span 4 columns, starting in 2nd column from left. */
+      @include zen-grid-item(4, 1,left);
+    }
+	
+    .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+      @include zen-grid-item(2, 1,left);
+	  @include zen-clear(left);
+	  
+    }
+  }
+
+  /*
+   * The layout when there is only one sidebar, the right one.
+   */
+
+  .sidebar-second {
+    #content { /* Span 4 columns, starting in 1st column from left. */
+      @include zen-grid-item(4, 1,left);
+    }
+
+    .region-sidebar-second { /* Span 1 column, starting in 3rd column from left. */
+      @include zen-grid-item(2, 1,left);
+	  @include zen-clear(left);
+	  
+    }
+  }
+
+  /*
+   * The layout when there are two sidebars.
+   */
+
+  .two-sidebars {
+    #content { /* Span 4 columns, starting in 2nd column from left. */
+      @include zen-grid-item(4, 1,left);
+    }
+
+    .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+      @include zen-grid-item(2, 1,left);
+	  @include zen-clear(left);
+    }
+
+    .region-sidebar-second { /* Start a new row and span all 3 columns. */
+      @include zen-grid-item(2, 3);
+    }
+   }
+   .footer-panel {
+     @include zen-nested-container()
+   }
+   .region-four-first {
+     @include zen-grid-item(2, 1,left);
+   }
+    .region-four-second {
+     @include zen-grid-item(2, 3,left);
+   }
+    .region-four-third {
+	 @include zen-clear(left);
+     @include zen-grid-item(2, 1,left);
+   }
+    .region-four-fourth{
+     @include zen-grid-item(2, 3,left);
+   }
+   
+  
+   
+}
+
+@media all and (min-width: 769px) and (max-width: 1024px) {
+  /*
+   * Use 4 grid columns for smaller screens.
+   */
+  $zen-column-count: 4;
+
+  /*
+   * The layout when there is only one sidebar, the left one.
+   */
+
+  .sidebar-first {
+    #content { /* Span 4 columns, starting in 2nd column from left. */
+      @include zen-grid-item(3, 2,left);
+    }
+
+    .region-sidebar-first { /* Span 1 column, starting in 1st column from left. */
+      @include zen-grid-item(1, 1,left);
+     }
+   }
+   
+   /*
+   * The layout when there is only one sidebar, the right one.
+   */
+
+  .sidebar-second {
+    #content { /* Span 4 columns, starting in 1st column from left. */
+      @include zen-grid-item(3, 1,left);
+    }
+
+    .region-sidebar-second { /* Span 1 column, starting in 3rd column from left. */
+      @include zen-grid-item(1, 4,left);
+    }
+  }
+  
+  /*
+   * The layout when there are two sidebars.
+   */
+
+  .two-sidebars {
+    #content { /* Span 4 columns, starting in 2nd column from left. */
+      @include zen-grid-item(2, 2,left);
+    }
+
+    .region-sidebar-first { /* Span 4 column, starting in 1st column from left. */
+      @include zen-grid-item(1, 1,left);
+    }
+
+    .region-sidebar-second { /* Start a new row and span all 4 columns. */
+      @include zen-grid-item(1, 4);
+    }
+   }
+   
+    .region-four-first {
+     @include zen-grid-item(1, 1,left);
+   }
+    .region-four-second {
+     @include zen-grid-item(1, 2,left);
+   }
+    .region-four-third {
+     @include zen-grid-item(1, 3,left);
+   }
+    .region-four-fourth{
+     @include zen-grid-item(1, 4,left);
+   }
+   
+}
